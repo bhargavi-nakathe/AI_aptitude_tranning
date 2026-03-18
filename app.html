@@ -250,7 +250,7 @@ function rQuestion(){
   if(!S.done){
     actBtn=`<button class="btn btn-p mt" onclick="submitAns()" ${S.sel===null?"disabled":""}>Submit Answer</button>`;
   } else {
-    actBtn=`<button class="btn btn-p mt" onclick="${isLast?"showRes()":"nextQ()}">${isLast?"🏁 View Results":"Next Question →"}</button>`;
+    actBtn=`<button class="btn btn-p mt" onclick="${isLast?"showRes()":"nextQ()"}">${isLast?"🏁 View Results":"Next Question →"} </button>`;
   }
 
   return`${hdr()}
