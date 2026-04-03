@@ -29,7 +29,7 @@ TEMPERATURE    = 0.7
 # not on every single question
 _model     = None
 _tokenizer = None
-_mode      = "stored"   # "finetuned" or "stored"
+_mode      = "finetuned"  # "stored"  
 
 
 def load_model():

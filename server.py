@@ -22,12 +22,21 @@ import random
 import torch
 from pathlib import Path
 from fastapi import FastAPI
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import uvicorn
 
 # ── Initialize FastAPI app ────────────────────────────────
 app = FastAPI(title="AI Aptitude Trainer API", version="1.0")
+
+# Serve HTML files
+app.mount("/static", StaticFiles(directory="."), name="static")
+
+@app.get("/")
+def root():
+    return FileResponse("app.html")
 
 # ── CORS — allows HTML file to call this server ───────────
 # Without this, browser blocks requests from HTML to Python
@@ -53,6 +62,10 @@ BASE_MODEL = "mistralai/Mistral-7B-Instruct-v0.3"
 async def startup_event():
     """This runs automatically when server starts."""
     global _model, _tokenizer, _mode
+
+    _mode = "stored"
+    print("[server] Stored hints mode active")
+    return
 
     lora_folder = Path(LORA_PATH)
 
